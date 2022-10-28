@@ -3,7 +3,7 @@ namespace CommonIOTasks
     [TestClass]
     public class CommonFileTasks
     {
-        public StreamWriter CreateTextFile(string path)
+        public StreamWriter CreateTextFile_File(string path)
         {
             StreamWriter streamWriter;
             try
@@ -36,26 +36,26 @@ namespace CommonIOTasks
         }
 
         [TestMethod]
-        public void CreateTextFile()
+        public void CreateTextFile_File()
         {
-            StreamWriter streamWriter = CreateTextFile("file1.txt");
+            StreamWriter streamWriter = CreateTextFile_File("file1.txt");
         }
 
         [TestMethod]
-        public void CreateTextFile_DirectoryNotFoundException()
+        public void CreateTextFile_File_DirectoryNotFoundException()
         {
             Assert.ThrowsException<DirectoryNotFoundException>(() =>
             {
-                StreamWriter streamWriter = CreateTextFile("notexistingdir/file1.txt");
+                StreamWriter streamWriter = CreateTextFile_File("notexistingdir/file1.txt");
             });
         }
 
         [TestMethod]
-        public void CreateTextFile_LongPath()
+        public void CreateTextFile_File_LongPath()
         {
             Assert.ThrowsException<IOException>(() =>
             {
-                StreamWriter streamWriter = CreateTextFile("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt");
+                StreamWriter streamWriter = CreateTextFile_File("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt");
             });
         }
     }
