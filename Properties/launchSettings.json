@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CommonIOTasks": {
+      "commandName": "Project",
+      "workingDirectory": "."
+    }
+  }
+}
