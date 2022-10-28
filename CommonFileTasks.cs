@@ -1,3 +1,5 @@
+using System.Security;
+
 namespace CommonIOTasks
 {
     [TestClass]
@@ -57,6 +59,40 @@ namespace CommonIOTasks
             {
                 StreamWriter streamWriter = CreateTextFile_File("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt");
             });
+        }
+
+        [TestMethod]
+        public void CreateTextFile_FileInfo()
+        {
+            string path = @"file2.txt";
+            FileInfo fileInfo = new FileInfo(path);
+            if(fileInfo.Exists)
+            {
+                fileInfo.Delete();
+            }
+            StreamWriter streamWriter;
+            try
+            {
+                streamWriter = fileInfo.CreateText();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // thrown when file name is a directory
+                // also thrown when access denied
+                throw;
+            }
+            catch (IOException ex)
+            {
+                // thrown when the disk is read-only
+                // also thrown when path is too long
+                throw;
+            }
+            catch (SecurityException ex)
+            {
+                // can't produce
+                throw;
+            }
+
         }
     }
 }
