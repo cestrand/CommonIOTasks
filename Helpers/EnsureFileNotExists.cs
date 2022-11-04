@@ -17,7 +17,7 @@ public abstract class EnsureFileNotExists
         Path = path;
     }
 
-    [ClassInitialize]
+    [TestInitialize]
     public void Initialize()
     {
         var fileInfo = new FileInfo(Path);
@@ -27,7 +27,7 @@ public abstract class EnsureFileNotExists
         }
     }
 
-    [ClassCleanup]
+    [TestCleanup]
     public void Cleanup()
     {
         var fileInfo = new FileInfo(Path);
