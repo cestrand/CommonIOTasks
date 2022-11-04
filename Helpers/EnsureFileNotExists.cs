@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CommonIOTasks.Helpers;
-public abstract class FileCreationTest
+public abstract class EnsureFileNotExists
 {
     public string Path
     {
         get; set;
     }
 
-    public FileCreationTest(string path)
+    public EnsureFileNotExists(string path)
     {
         Path = path;
     }
 
     [ClassInitialize]
-    public void EnsureFileNotExists()
+    public void Initialize()
     {
         var fileInfo = new FileInfo(Path);
         if (fileInfo.Exists)
@@ -28,7 +28,7 @@ public abstract class FileCreationTest
     }
 
     [ClassCleanup]
-    public void DeleteFile()
+    public void Cleanup()
     {
         var fileInfo = new FileInfo(Path);
         if (fileInfo.Exists)

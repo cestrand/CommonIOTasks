@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CommonIOTasks.FileTests;
 
 [TestClass]
-public class CreateTextFile : FileCreationTest
+public class CreateTextFile : EnsureFileNotExists
 {
     public CreateTextFile() : base("file1.txt") { }
  
